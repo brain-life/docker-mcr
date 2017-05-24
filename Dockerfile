@@ -6,7 +6,8 @@
 #
 # See http://www.mathworks.com/products/compiler/mcr/ for more info.
 
-FROM ubuntu-debootstrap:trusty
+#FROM ubuntu-debootstrap:trusty
+FROM neurodebian:trusty
 
 # Install the MCR dependencies and some things we'll need and download the MCR
 # from Mathworks -silently install it
