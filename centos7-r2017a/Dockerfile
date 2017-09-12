@@ -6,10 +6,10 @@
 #
 # See http://www.mathworks.com/products/compiler/mcr/ for more info.
 
-FROM centos:6
+FROM centos:7
 
-RUN \
-	yum update -y && yum install -y wget curl xorg unzip && \
+#RUN 	yum -y update && yum install -y wget curl xorg unzip libXext libXtst libXrender libXt libXt libX11 && \
+RUN 	yum -y update && yum install -y wget curl xorg unzip && \
 	mkdir /mcr-install && mkdir /opt/mca && \
 	cd /mcr-install && \
 	wget https://www.mathworks.com/supportfiles/downloads/R2017a/deployment_files/R2017a/installers/glnxa64/MCR_R2017a_glnxa64_installer.zip && \
@@ -19,4 +19,7 @@ RUN \
 
 # Configure environment variables for MCR
 ENV LD_LIBRARY_PATH /opt/mcr/v92/runtime/glnxa64:/opt/mcr/v92/bin/glnxa64:/opt/mcr/v92/sys/os/glnxa64
-#ENV XAPPLRESDIR /opt/mcr/v90/X11/app-defaults
+
+#for 2016a only?
+#ENV XAPPLRESDIR /opt/mcr/v92/X11/app-defaults
+
