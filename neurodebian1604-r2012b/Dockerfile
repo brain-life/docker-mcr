@@ -1,4 +1,4 @@
-# Download and install Matlab Compiler Runtime v9.0 (2016a)
+# Download and install Matlab Compiler Runtime
 #
 # This docker file will configure an environment into which the Matlab compiler
 # runtime will be installed and in which stand-alone matlab routines (such as
@@ -19,15 +19,19 @@ RUN apt-get -qq update && apt-get -qq install -y \
     mkdir /mcr-install && \
     mkdir /opt/mcr && \
     cd /mcr-install && \
-    wget http://www.mathworks.com/supportfiles/downloads/R2016a/deployment_files/R2016a/installers/glnxa64/MCR_R2016a_glnxa64_installer.zip && \
+    wget http://ssd.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip && \
     cd /mcr-install && \
-    unzip -q MCR_R2016a_glnxa64_installer.zip && \
+    unzip -q MCR_R2012b_glnxa64_installer.zip && \
     ./install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
     cd / && \
     rm -rf mcr-install
 
-# Configure environment variables for MCR
-ENV LD_LIBRARY_PATH /opt/mcr/v901/runtime/glnxa64:/opt/mcr/v901/bin/glnxa64:/opt/mcr/v901/sys/os/glnxa64
-ENV XAPPLRESDIR /opt/mcr/v90/X11/app-defaults
+#TODO merge to above
+RUN apt-get -y install libatlas-base-dev
 
-RUN apt-get install libatlas-base-dev
+# Configure environment variables for MCR
+# TODO - adding these breaks a lot of basic commands (curl, apt-get, etc..) - the library provided by r2012b are too old
+# Apps that want to use MCR capability needs to add following via export right before the execution of the app
+#ENV LD_LIBRARY_PATH /opt/mcr/v80/runtime/glnxa64:/opt/mcr/v80/bin/glnxa64:/opt/mcr/v80/sys/os/glnxa64
+#ENV XAPPLRESDIR /opt/mcr/v80/X11/app-defaults
+
