@@ -19,6 +19,9 @@
 #docker build -t brainlife/mcr:centos7-r2017a centos7-r2017a && 
 #    docker push brainlife/mcr:centos7-r2017a
 
+#docker build -t brainlife/mcr:neurodebian1604-r2012b neurodebian1604-r2012b && docker push brainlife/mcr
+
 #docker build -t brainlife/mcr:neurodebian1604-r2017a neurodebian1604-r2017a && docker push brainlife/mcr
 
-docker build -t brainlife/mcr:neurodebian1604-r2012b neurodebian1604-r2012b && docker push brainlife/mcr
+docker build -t brainlife/mcr:r2019a r2019a && docker push brainlife/mcr
+
